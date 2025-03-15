@@ -59,7 +59,7 @@
             <div class="col">
                 <div class="card h-100 team-card {% if i == 1 %}rank-1{% elif i == 2 %}rank-2{% elif i == 3 %}rank-3{% endif %}">
                     <div class="card-body">
-                        <h5 class="card-title">{{ i }}. {{ team[1] }}</h5>
+                        <h5 class="card-title">{{ i }}. {{ team[1].split('(')[1].rstrip(')') if '(' in team[1] else team[1] }}</h5>
                         <p class="card-text display-4 text-center">{{ team[2] }}</p>
                         <div class="text-center">
                             <a href="{{ url_for('team_history', team_id=team[0]) }}" class="btn btn-sm btn-outline-dark">View History</a>
