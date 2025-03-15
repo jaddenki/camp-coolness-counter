@@ -1,0 +1,90 @@
+body {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    margin-top: 5rem;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.card-header {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.d-grid {
+    display: grid;
+}
+
+.gap-2 {
+    gap: .5rem;
+}
+
+.d-md-flex {
+    display: flex;
+}
+
+.justify-content-md-end {
+    justify-content: flex-end;
+}
+
+.me-md-2 {
+    margin-right: .5rem;
+}
+
+/* Custom card styles */
+.card {
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    transition: transform 0.3s;
+}
+
+
+.card-body {
+    font-size: 1rem;
+}
+
+/* Rainbow title */
+.rainbow-title {
+    background: linear-gradient(to left, red, orange, yellow, green, blue, indigo, violet);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Layout for cards */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+/* Top 3 card colors */
+.rank-1 {
+    border-color: #000;
+    background-color: #FF68A8;
+}
+
+.rank-2 {
+    border-color:#000;
+    background-color: #F9EB0F;
+}
+
+.rank-3 {
+    border-color: #000;
+    background-color: #10E7E2;
+}
