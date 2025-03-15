@@ -3,29 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard</title>
+    <title>team leaderboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .team-card {
+            transition: transform 0.3s;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .rank-1 {
+            background-color: gold;
+            color: #333;
+        }
+        .rank-2 {
+            background-color: silver;
+            color: #333;
+        }
+        .rank-3 {
+            background-color: #cd7f32;
+            color: white;
+        }
+    </style>
 </head>
-<body class="container mt-5">
-    <h2 class="text-center">Leaderboard</h2>
-    <table class="table table-bordered mt-3">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Team Name</th>
-                <th>Total Points</th>
-            </tr>
-        </thead>
-        <tbody>
+<body>
+    <div class="container mt-5">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="text-center">Team Leaderboard</h1>
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col text-end">
+                {% if session.get('is_ta') %}
+                    <a href="{{ url_for('add_points') }}" class="btn btn-primary">Add Points</a>
+                    <a href="{{ url_for('logout') }}" class="btn btn-outline-secondary">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-primary">TA Login</a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for i, team in enumerate(teams, start=1) %}
-            <tr>
-                <td>{{ i }}</td>
-                <td>{{ team[1] }}</td>
-                <td>{{ team[2] }}</td>
-            </tr>
+            <div class="col">
+                <div class="card h-100 team-card {% if i == 1 %}rank-1{% elif i == 2 %}rank-2{% elif i == 3 %}rank-3{% endif %}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i }}. {{ team[1] }}</h5>
+                        <p class="card-text display-4 text-center">{{ team[2] }}</p>
+                        <div class="text-center">
+                            <a href="{{ url_for('team_history', team_id=team[0]) }}" class="btn btn-sm btn-outline-dark">View History</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
-        </tbody>
-    </table>
-    <a href="/add_points" class="btn btn-primary">Add Points</a>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
